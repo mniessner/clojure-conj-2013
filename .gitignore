@@ -8,3 +8,4 @@ pom.xml
 /classes/
 /targets/
 .lein-deps-sum
+clojurescript/boids/out/
