@@ -1,3 +1,7 @@
+.vagrant
+*.swp
+.DS_STORE
+/clojurescript/boids/resources/public/build/
 pom.xml
 *jar
 /lib/
