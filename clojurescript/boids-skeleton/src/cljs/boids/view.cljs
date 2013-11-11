@@ -3,12 +3,13 @@
 (defn init
   "Given an atom containing a seq of boids, initialize the view"
   [flock-atom]
-  (let [canvas (.createElement js/document "canvas")]
-    (.setAttribute canvas "width" (.-innerWidth js/window))
-    (.setAttribute canvas "height" (.-innerHeight js/window))
-    (.appendChild (.-body js/document) canvas)
+  (let [canvas (js/jQuery "<canvas>")]
+    (-> canvas
+        (.attr "width" (.-innerWidth js/window))
+        (.attr "height" (.-innerHeight js/window))
+        (.appendTo (js/jQuery "body")))
     (add-watch flock-atom :renderer (fn [_ _ _ flock]
-                                      (render canvas flock)))))
+                                      (render (.get canvas 0) flock)))))
 
 (defn render
   "Given a collection of boids, render them to the canvas"
