@@ -43,29 +43,29 @@ return h__3363__auto____$1;
 boids.main.Boid.prototype.cljs$core$ILookup$_lookup$arity$2 = (function (this__3513__auto__,k__3514__auto__){var self__ = this;
 var this__3513__auto____$1 = this;return cljs.core._lookup.call(null,this__3513__auto____$1,k__3514__auto__,null);
 });
-boids.main.Boid.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__3515__auto__,k5933,else__3516__auto__){var self__ = this;
-var this__3515__auto____$1 = this;if(cljs.core.keyword_identical_QMARK_.call(null,k5933,new cljs.core.Keyword(null,"pos","pos",1014015430)))
+boids.main.Boid.prototype.cljs$core$ILookup$_lookup$arity$3 = (function (this__3515__auto__,k4808,else__3516__auto__){var self__ = this;
+var this__3515__auto____$1 = this;if(cljs.core.keyword_identical_QMARK_.call(null,k4808,new cljs.core.Keyword(null,"pos","pos",1014015430)))
 {return self__.pos;
 } else
-{if(cljs.core.keyword_identical_QMARK_.call(null,k5933,new cljs.core.Keyword(null,"vel","vel",1014020879)))
+{if(cljs.core.keyword_identical_QMARK_.call(null,k4808,new cljs.core.Keyword(null,"vel","vel",1014020879)))
 {return self__.vel;
 } else
 {if(new cljs.core.Keyword(null,"else","else",1017020587))
-{return cljs.core.get.call(null,self__.__extmap,k5933,else__3516__auto__);
+{return cljs.core.get.call(null,self__.__extmap,k4808,else__3516__auto__);
 } else
 {return null;
 }
 }
 }
 });
-boids.main.Boid.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__3520__auto__,k__3521__auto__,G__5932){var self__ = this;
-var this__3520__auto____$1 = this;var pred__5935 = cljs.core.keyword_identical_QMARK_;var expr__5936 = k__3521__auto__;if(pred__5935.call(null,new cljs.core.Keyword(null,"pos","pos",1014015430),expr__5936))
-{return (new boids.main.Boid(G__5932,self__.vel,self__.__meta,self__.__extmap,null));
+boids.main.Boid.prototype.cljs$core$IAssociative$_assoc$arity$3 = (function (this__3520__auto__,k__3521__auto__,G__4807){var self__ = this;
+var this__3520__auto____$1 = this;var pred__4810 = cljs.core.keyword_identical_QMARK_;var expr__4811 = k__3521__auto__;if(pred__4810.call(null,new cljs.core.Keyword(null,"pos","pos",1014015430),expr__4811))
+{return (new boids.main.Boid(G__4807,self__.vel,self__.__meta,self__.__extmap,null));
 } else
-{if(pred__5935.call(null,new cljs.core.Keyword(null,"vel","vel",1014020879),expr__5936))
-{return (new boids.main.Boid(self__.pos,G__5932,self__.__meta,self__.__extmap,null));
+{if(pred__4810.call(null,new cljs.core.Keyword(null,"vel","vel",1014020879),expr__4811))
+{return (new boids.main.Boid(self__.pos,G__4807,self__.__meta,self__.__extmap,null));
 } else
-{return (new boids.main.Boid(self__.pos,self__.vel,self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__3521__auto__,G__5932),null));
+{return (new boids.main.Boid(self__.pos,self__.vel,self__.__meta,cljs.core.assoc.call(null,self__.__extmap,k__3521__auto__,G__4807),null));
 }
 }
 });
@@ -102,8 +102,8 @@ var this__3509__auto____$1 = this;if(cljs.core.truth_((function (){var and__2950
 {return false;
 }
 });
-boids.main.Boid.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__3512__auto__,G__5932){var self__ = this;
-var this__3512__auto____$1 = this;return (new boids.main.Boid(self__.pos,self__.vel,G__5932,self__.__extmap,self__.__hash));
+boids.main.Boid.prototype.cljs$core$IWithMeta$_with_meta$arity$2 = (function (this__3512__auto__,G__4807){var self__ = this;
+var this__3512__auto____$1 = this;return (new boids.main.Boid(self__.pos,self__.vel,G__4807,self__.__extmap,self__.__hash));
 });
 boids.main.Boid.prototype.cljs$core$IMeta$_meta$arity$1 = (function (this__3511__auto__){var self__ = this;
 var this__3511__auto____$1 = this;return self__.__meta;
@@ -122,7 +122,7 @@ boids.main.Boid.cljs$lang$ctorPrWriter = (function (this__3547__auto__,writer__3
 });
 boids.main.__GT_Boid = (function __GT_Boid(pos,vel){return (new boids.main.Boid(pos,vel));
 });
-boids.main.map__GT_Boid = (function map__GT_Boid(G__5934){return (new boids.main.Boid(new cljs.core.Keyword(null,"pos","pos",1014015430).cljs$core$IFn$_invoke$arity$1(G__5934),new cljs.core.Keyword(null,"vel","vel",1014020879).cljs$core$IFn$_invoke$arity$1(G__5934),null,cljs.core.dissoc.call(null,G__5934,new cljs.core.Keyword(null,"pos","pos",1014015430),new cljs.core.Keyword(null,"vel","vel",1014020879))));
+boids.main.map__GT_Boid = (function map__GT_Boid(G__4809){return (new boids.main.Boid(new cljs.core.Keyword(null,"pos","pos",1014015430).cljs$core$IFn$_invoke$arity$1(G__4809),new cljs.core.Keyword(null,"vel","vel",1014020879).cljs$core$IFn$_invoke$arity$1(G__4809),null,cljs.core.dissoc.call(null,G__4809,new cljs.core.Keyword(null,"pos","pos",1014015430),new cljs.core.Keyword(null,"vel","vel",1014020879))));
 });
 /**
 * Returns a new boid with a random position on the screen.
@@ -177,7 +177,7 @@ boids.main.update_boid = (function update_boid(options,flock,boid){var desired_v
 /**
 * Returns an acceleration vector for the given boid.
 */
-boids.main.acceleration = (function acceleration(options,flock,boid){return cljs.core.reduce.call(null,boids.euclidean_vector.add,cljs.core.map.call(null,(function (p__5940){var vec__5941 = p__5940;var behavior = cljs.core.nth.call(null,vec__5941,0,null);var option_weight_key = cljs.core.nth.call(null,vec__5941,1,null);return boids.euclidean_vector.mul.call(null,behavior.call(null,options,flock,boid),options.call(null,option_weight_key));
+boids.main.acceleration = (function acceleration(options,flock,boid){return cljs.core.reduce.call(null,boids.euclidean_vector.add,cljs.core.map.call(null,(function (p__4815){var vec__4816 = p__4815;var behavior = cljs.core.nth.call(null,vec__4816,0,null);var option_weight_key = cljs.core.nth.call(null,vec__4816,1,null);return boids.euclidean_vector.mul.call(null,behavior.call(null,options,flock,boid),options.call(null,option_weight_key));
 }),cljs.core.PersistentArrayMap.fromArray([boids.behaviors.cohesion,new cljs.core.Keyword(null,"cohesion-weight","cohesion-weight",4166459897),boids.behaviors.avoidance,new cljs.core.Keyword(null,"avoidance-weight","avoidance-weight",3052491667),boids.behaviors.alignment,new cljs.core.Keyword(null,"alignment-weight","alignment-weight",828156180),boids.behaviors.goal,new cljs.core.Keyword(null,"goal-weight","goal-weight",780244452)], true)));
 });
 /**

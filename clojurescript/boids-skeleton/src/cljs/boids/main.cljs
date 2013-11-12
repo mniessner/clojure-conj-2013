@@ -3,6 +3,7 @@
             [boids.view :as view]
             [boids.behaviors :as b]))
 
+
 (defrecord Boid [pos vel])
 
 (defn create-boid
@@ -35,13 +36,6 @@
    (.mozRequestAnimationFrame js/window callback)
    (.-msRequestAnimationFrame js/window)
    (.msRequestAnimationFrame js/window callback)))
-
-(defn main
-  "Starts everything"
-  []
-  (let [options-atom (atom default-options)
-        flock-atom (atom (repeatedly 15 create-boid))]
-    (tick options-atom flock-atom)))
 
 (defn tick
   "The main 'loop' of the simulation."
@@ -77,10 +71,11 @@
        (reduce v/add)))
 
 
-(defn main
+(defn ^:export main
   "Starts everything"
   []
   (let [options-atom (atom default-options)
         flock-atom (atom (repeatedly 15 create-boid))]
     (view/init flock-atom)
     (tick options-atom flock-atom)))
+atom

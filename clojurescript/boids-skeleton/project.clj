@@ -3,6 +3,6 @@
                  [org.clojure/clojurescript "0.0-1978"]]
   :plugins [[lein-cljsbuild "0.3.4"]]
   :cljsbuild {:builds [{:source-paths ["src/cljs"]
-                        :compiler {:optimizations :none
-                                   :output-to "resources/public/build/deps.js"
-                                   :output-dir "resources/public/build"}}]})
+                        :compiler {:optimizations :advanced
+                                   :output-to "resources/public/build/advanced.js"
+                                   :externs ["resources/public/lib/jquery-externs.js"]}}]})
