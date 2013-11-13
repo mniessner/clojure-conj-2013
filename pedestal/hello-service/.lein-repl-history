@@ -1,2 +1,3 @@
 (start)
 (require :reload 'hello-service.service)
+quit
