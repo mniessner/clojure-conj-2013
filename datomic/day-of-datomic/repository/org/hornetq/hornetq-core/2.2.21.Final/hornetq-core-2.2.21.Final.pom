@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.hornetq</groupId>
+  <artifactId>hornetq-core</artifactId>
+  <version>2.2.21.Final</version>
+   <name>HornetQ</name>
+   <url>http://hornetq.org</url>
+   <description>HornetQ Messaging System</description>
+    <licenses>
+       <license>
+          <name>Apache 2</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+          <distribution>repo</distribution>
+       </license>
+    </licenses>
+    <developers>
+       <developer>
+          <name>Clebert Suconic</name>
+       </developer>
+       <developer>
+          <name>Andy Taylor</name>
+       </developer>
+       <developer>
+          <name>Howard Gao</name>
+       </developer>
+    </developers>
+    <scm>
+       <connection>scm:svn:http://anonsvn.jboss.org/repos/hornetq/trunk</connection>
+       <developerConnection>scm:svn:https://svn.jboss.org/repos/hornetq/trunk</developerConnection>
+       <url>http://fisheye.jboss.org/browse/hornetq</url>
+    </scm>
+  </project>

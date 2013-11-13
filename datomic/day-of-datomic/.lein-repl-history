@@ -1,0 +1,117 @@
+(require '[datomic.api :as d])
+(def uri "datomic:mem://hello")
+(d/create-database uri)
+(def conn (d/connect uri))
+(def tx-result               
+  (d/transact                
+   conn                      
+   [[:db/add                 
+     (d/tempid :db.part/user)
+     :db/doc                 
+     "Hello world"]]))       
+tx-result
+(def dbval (d/db conn))
+(def q-result (d/q '[:find ?e                          
+                     :where [?e :db/doc "Hello world"]]
+                   dbval))                             
+                                                       
+q-result
+(def ent (d/entity dbval (ffirst q-result)))
+(d/touch ent)
+(def doc-ent (d/entity dbval :db/doc))
+(d/touch doc-ent)
+exit
+(require '[datomic.api :as d])
+(def uri "datomic:dev://localhost:4334/hello")
+(d/create-database uri)
+(def uri "datomic:free://localhost:4334/hello")
+(d/create-database uri)
+(def conn (d/connect uri))
+(use 'datomic.samples.repl)
+(doc easy!)
+(easy!)
+(doc scratch-conn)
+(def conn (scratch-conn))
+(transact-all conn (io/resource "day-of-datomic/social-news.edn"))
+(doc qes)
+(source qes)
+(defpp all-stories                                     
+  "All stories"                                        
+  (qes '[:find ?e :where [?e :story/url]] (d/db conn)))
+(defpp new-user-id (d/tempid :db.part/user))
+(defpp upvote-all-stories                                           
+  "Transaction data for new-user-id to upvote all stories"          
+  (mapv                                                             
+   (fn [[story]] [:db/add new-user-id :user/upVotes (:db/id story)])
+   all-stories))                                                    
+(defpp new-user                    
+  "Transaction data for a new user"
+  [{:db/id new-user-id             
+    :user/email "john@example.com" 
+    :user/firstName "John"         
+    :user/lastName "Doe"}])        
+(defpp upvote-tx-result                                            
+  "In a single transaction, create new user and upvote all stories"
+  (->> (concat upvote-all-stories new-user)                        
+       (d/transact conn)))                                         
+(defpp actual-new-user-id                                      
+  "The actual entity ID of the new user after the transaction."
+  (d/resolve-tempid (:db-after @upvote-tx-result)              
+                    (:tempids @upvote-tx-result)               
+                    new-user-id))                              
+(defpp change-user-name-result                                         
+  "Demonstrates upsert. Tempid will resolve to existing id to          
+   match specified :user/email."                                       
+  (d/transact                                                          
+   conn                                                                
+   [{:user/email "john@example.com"  ; this finds the existing entity  
+     :db/id (d/tempid :db.part/user)  ; will be replaced by existing id
+     :user/firstName "Johnathan"}]))                                   
+(doc qe)
+(source qe)
+(defpp john                                                 
+  (qe '[:find ?e :where [?e :user/email "john@example.com"]]
+      (d/db conn)))                                         
+(count (get john :user/upVotes)) 
+(defpp johns-upvote-for-pg                                       
+  (qe '[:find ?story                                             
+        :in $ ?e                                                 
+        :where [?e :user/upVotes ?story]                         
+        [?story :story/url "http://www.paulgraham.com/avg.html"]]
+      (d/db conn)                                                
+      (:db/id john)))                                            
+(defpp john-retracts-upvote-result                                           
+  (d/transact                                                                
+   conn                                                                      
+   [[:db/retract (:db/id john) :user/upVotes (:db/id johns-upvote-for-pg)]]))
+(defpp john                                            
+  (find-by (d/db conn) :user/email "john@example.com"))
+(count (get john :user/upVotes))
+(defpp data-that-retracts-johns-upvotes
+  (vec (d/q '[:find ?op ?e ?a ?v       
+              :in $ ?op ?e ?a          
+              :where [?e ?a ?v]]       
+            (d/db conn)                
+            :db/retract                
+            (:db/id john)              
+            :user/upVotes)))           
+(d/transact conn data-that-retracts-johns-upvotes)
+(defpp john                                            
+  (find-by (d/db conn) :user/email "john@example.com"))
+(get john :user/upVotes)
+(defpp ten-new-users                                          
+  (gen-users-with-upvotes (mapv first all-stories) "user" 10))
+count (d/q '[:find ?e ?v :where [?e :user/email ?v]] (d/db conn)))
+(count (d/q '[:find ?e ?v :where [?e :user/email ?v]] (d/db conn)))
+(defpp users-with-emails-and-upvotes                          
+  (->> (find-all-by (d/db conn) :user/email)                  
+       (mapv                                                  
+        (fn [[ent]]                                           
+          {:email (:user/email ent)                           
+           :upvoted (mapv :story/url (:user/upVotes ent))}))))
+(d/q '[:find ?email ?upvote                                           
+     :where                                                           
+     [?e :user/email ?email]                                          
+     [(datomic.samples.query/maybe $ ?e :user/upVotes :none) ?upvote]]
+   (d/db conn))                                                       
+exit
